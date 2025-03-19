@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import NTSLogo from './NtsLogo'
 import {live, infinite} from './stations'
+import GithubLogo from './GithubLogo'
 
 const LiveBtn = ({isActive, title, streamUrl, onClick}) => {
     return <div className={`flex h-[120px] items-center justify-center border-1 border-white ${isActive ? 'bg-white text-black' : 'text-white'} cursor-pointer`} onClick={() => onClick(streamUrl)}>
@@ -44,12 +45,19 @@ function App() {
             <div className="flex items-center justify-center h-[80px]">
                 <Player url={nowPlaying} />
             </div>
-            <div className="flex gap-[24px] h-[80px] items-center">
-                <div className="w-[80px]">
-                    <NTSLogo />
+            <div className="flex justify-between items-center">
+                <div className="flex gap-[24px] h-[80px] items-center">
+                    <div className="w-[80px]">
+                        <NTSLogo />
+                    </div>
+                    <div className="text-[32px] font-thin italic text-white uppercase">
+                        exxxtra light
+                    </div>
                 </div>
-                <div className="text-[32px] font-thin italic text-white uppercase">
-                    exxxtra light
+                <div>
+                    <a class="flex items-center justify-center w-12 h-12 text-white" target="_blank" rel="noreferrer noopener" aria-label="Check on GitHub" href="https://github.com/spltfc/nts-lite">
+                        <GithubLogo />
+                    </a>
                 </div>
             </div>
             <div className="grid grid-cols-2">
