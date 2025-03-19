@@ -14,7 +14,7 @@ const LiveBtn = ({isActive, title, streamUrl, onClick}) => {
 const InfiniteBtn = ({isActive, title, description, color, streamUrl, onClick}) => {
     return <div style={{backgroundColor: color}} className="border-1 border-white">
         <div className={`flex flex-col h-[150px] gap-[12px] items-center justify-center ${isActive ? 'bg-white text-black' : 'text-white'} cursor-pointer`} onClick={() => onClick(streamUrl)}>
-            <div className="text-xl uppercase font-bold">
+            <div className="text-xl uppercase font-bold text-center">
                 {title}
             </div>
             <div className="text-xs max-w-2/3 text-center font-light">
@@ -71,7 +71,7 @@ function App() {
                     /> 
                 })}
             </div>
-            <div className="grid grid-cols-3">
+            <div className="grid grid-cols-3 max-sm:grid-cols-2">
                 {Object.keys(infinite).map((stationKey) => {
                     const {title, description, color, streamUrl} = infinite[stationKey]
                     return <InfiniteBtn
