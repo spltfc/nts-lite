@@ -1,5 +1,5 @@
-export const MIXTAPE_ORIGIN = "https://stream-mixtape-geo.ntslive.net"
-export const RADIO_BASE_URL = "https://stream-relay-geo.ntslive.net"
+export const MIXTAPE_ORIGIN = "http://stream-mixtape-geo.ntslive.net"
+export const RADIO_BASE_URL = "http://stream-relay-geo.ntslive.net"
 
 export const live = {
     'live1': {
