@@ -9,6 +9,7 @@ const LiveBtn = ({isActive, title, streamUrl, onClick}) => {
     return <div className="live-btn-w">
         <div className={`live-btn ${isActive ? '__active' : ''}`} onClick={() => onClick(streamUrl)}>
             <div className="live-btn-title">
+                {isActive ? <span className="now-playing">&#9679; </span> : ''}
                 {title}
             </div>
         </div>
@@ -19,6 +20,7 @@ const InfiniteBtn = ({isActive, title, description, color, streamUrl, onClick}) 
     return <div style={{backgroundColor: color}} className="mixtape-w">
         <div className={`mixtape ${isActive ? '__active' : ''}`} onClick={() => onClick(streamUrl)}>
             <div className="mixtape-title">
+                {isActive ? <span className="now-playing">&#9679; </span> : ''}
                 {title}
             </div>
             <div className="mixtape-desc">
@@ -28,12 +30,26 @@ const InfiniteBtn = ({isActive, title, description, color, streamUrl, onClick}) 
     </div>
 }
 
-const Player = ({url}) => {
-    return <audio autoPlay controls src={url} className="player" />
+const Player = ({url, onStatusUpdate}) => {
+    const onPaused = useCallback(() => onStatusUpdate('paused'), [onStatusUpdate])
+    const onPlay = useCallback(() => onStatusUpdate('playing'), [onStatusUpdate])
+    const onLoadStart = useCallback(() => onStatusUpdate('loading...'), [onStatusUpdate])
+    const onError = useCallback(() => onStatusUpdate('player error'), [onStatusUpdate])
+    return <audio
+        autoPlay
+        controls
+        src={url}
+        className="player"
+        onPause={onPaused}
+        onPlay={onPlay}
+        onLoadStart={onLoadStart}
+        onError={onError}
+    />
 }
 
 function App() {
     const [nowPlaying, setNowPlaying] = useState(null)
+    const [playerStatus, setPlayerStatus] = useState(null)
 
     const onStationClick = useCallback((streamUrl) => {
         if (nowPlaying === streamUrl) {
@@ -46,7 +62,7 @@ function App() {
     return (
         <div className="container">
             <div className="player-w">
-                <Player url={nowPlaying} />
+                <Player url={nowPlaying} onStatusUpdate={setPlayerStatus} />
             </div>
             <div className="header">
                 <div className="logo-w">
@@ -56,7 +72,7 @@ function App() {
                         </a>
                     </div>
                     <div className="logo-w-text">
-                        lite
+                        lite {playerStatus ? <span className="status">{playerStatus}</span> : ''}
                     </div>
                 </div>
                 <div className="github">

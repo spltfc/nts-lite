@@ -21,6 +21,10 @@ body {
         font-size: 28px;
         font-style: italic;
         font-weight: 100;
+        .status {
+            padding-left: 12px;
+            color: #666;
+        }
     }
 }
 
@@ -40,6 +44,7 @@ body {
 
 .live-streams {
     border: 1px #fff solid;
+    margin-bottom: -2px;
     .live-btn {
         height: 80px;
         display: flex;
@@ -72,6 +77,7 @@ body {
         justify-content: center;
         height: 120px;
         border: 1px #fff solid;
+        cursor: pointer;
         &.__active {
             background-color: white;
             color: black;
@@ -115,6 +121,11 @@ body {
         display: flex;
         align-items: center;
     }
+}
+
+.now-playing {
+    display: none;
+    color: rgb(243, 126, 126);
 }
 
 @media screen and (min-width: 800px) {
