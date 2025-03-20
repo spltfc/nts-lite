@@ -1,0 +1,27 @@
+{
+    "theme_color": "#000000",
+    "background_color": "#000000",
+    "icons": [
+        {
+            "purpose": "maskable",
+            "sizes": "512x512",
+            "src": "icon512_maskable.png",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any",
+            "sizes": "512x512",
+            "src": "icon512_rounded.png",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "any",
+    "display": "standalone",
+    "dir": "auto",
+    "lang": "en-US",
+    "name": "NTS Lite",
+    "description": "Lite version of NTS.live for old devices with low memory. Live streams and infinite mixtapes.",
+    "short_name": "NTS Lite",
+    "start_url": "https://spltfc.github.io/nts-lite/",
+    "id": "https://spltfc.github.io/nts-lite/"
+}

@@ -2,7 +2,7 @@
   "name": "nts-lite",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "homepage": "https://spltfc.github.io/nts-lite/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
