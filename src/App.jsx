@@ -1,6 +1,6 @@
 import './App.scss'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import NTSLogo from './NtsLogo'
 import {live, infinite} from './stations'
 import GithubLogo from './GithubLogo'
@@ -35,7 +35,12 @@ const Player = ({url, onStatusUpdate}) => {
     const onPlay = useCallback(() => onStatusUpdate('playing'), [onStatusUpdate])
     const onLoadStart = useCallback(() => onStatusUpdate('loading...'), [onStatusUpdate])
     const onError = useCallback(() => onStatusUpdate('player error'), [onStatusUpdate])
-    if (!url) return null; 
+
+    useEffect(() => {
+        if (!url) onStatusUpdate('');
+    }, [url, onStatusUpdate])
+
+    if (!url) return null;
     return <audio
         autoPlay
         controls
