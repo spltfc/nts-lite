@@ -35,6 +35,7 @@ const Player = ({url, onStatusUpdate}) => {
     const onPlay = useCallback(() => onStatusUpdate('playing'), [onStatusUpdate])
     const onLoadStart = useCallback(() => onStatusUpdate('loading...'), [onStatusUpdate])
     const onError = useCallback(() => onStatusUpdate('player error'), [onStatusUpdate])
+    if (!url) return null; 
     return <audio
         autoPlay
         controls
