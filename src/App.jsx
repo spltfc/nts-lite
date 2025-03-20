@@ -72,7 +72,9 @@ function App() {
                         </a>
                     </div>
                     <div className="logo-w-text">
-                        lite {playerStatus ? <span className="status">{playerStatus}</span> : ''}
+                        lite
+                        {playerStatus ? <span className="status">{playerStatus}</span> : ''}
+                        {playerStatus === 'player error' ? <a href={nowPlaying} target="_blank" className="open-stream">&#10064;</a> : ''}
                     </div>
                 </div>
                 <div className="github">
