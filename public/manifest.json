@@ -16,7 +16,7 @@
         }
     ],
     "orientation": "any",
-    "display": "standalone",
+    "display": "fullscreen",
     "dir": "auto",
     "lang": "en-US",
     "name": "NTS Lite",

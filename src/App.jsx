@@ -73,7 +73,7 @@ function App() {
             <div className="header">
                 <div className="logo-w">
                     <div className="nts-logo">
-                        <a href="https://nts.live" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.nts.live/infinite-mixtapes" target="_blank" rel="noopener noreferrer">
                             <NTSLogo />
                         </a>
                     </div>
