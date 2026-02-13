@@ -1,6 +1,6 @@
 import './App.scss'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import NTSLogo from './NtsLogo'
 import {live, infinite} from './stations'
 import GithubLogo from './GithubLogo'
@@ -30,7 +30,11 @@ const InfiniteBtn = ({isActive, title, description, color, streamUrl, onClick}) 
     </div>
 }
 
-const Player = ({url, onStatusUpdate}) => {
+const Player = ({
+    playerRef,
+    url, 
+    onStatusUpdate
+}) => {
     const onPaused = useCallback(() => onStatusUpdate('paused'), [onStatusUpdate])
     const onPlay = useCallback(() => onStatusUpdate('playing'), [onStatusUpdate])
     const onLoadStart = useCallback(() => onStatusUpdate('loading...'), [onStatusUpdate])
@@ -42,6 +46,7 @@ const Player = ({url, onStatusUpdate}) => {
 
     if (!url) return null;
     return <audio
+        ref={playerRef}
         autoPlay
         controls
         src={url}
@@ -54,12 +59,22 @@ const Player = ({url, onStatusUpdate}) => {
 }
 
 function App() {
+    const playerRef = useRef();
     const [nowPlaying, setNowPlaying] = useState(null)
     const [playerStatus, setPlayerStatus] = useState(null)
 
     const onStationClick = useCallback((streamUrl) => {
         if (nowPlaying === streamUrl) {
-            setNowPlaying(null)
+            if (playerRef.current && playerRef.current.paused) {
+                try {
+                    playerRef.current.play()
+                } catch (e) {
+                    console.error(e)
+                    setNowPlaying(null)
+                }
+            } else {
+                setNowPlaying(null)
+            }
         } else {
             setNowPlaying(streamUrl)
         }
@@ -68,7 +83,11 @@ function App() {
     return (
         <div className="container">
             <div className="player-w">
-                <Player url={nowPlaying} onStatusUpdate={setPlayerStatus} />
+                <Player
+                    playerRef={playerRef}
+                    url={nowPlaying}
+                    onStatusUpdate={setPlayerStatus}
+                />
             </div>
             <div className="header">
                 <div className="logo-w">
