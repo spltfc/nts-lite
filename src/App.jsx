@@ -67,7 +67,8 @@ function App() {
         if (nowPlaying === streamUrl) {
             if (playerRef.current && playerRef.current.paused) {
                 try {
-                    playerRef.current.play()
+                    // eslint-disable-next-line no-self-assign
+                    playerRef.current.src = playerRef.current.src
                 } catch (e) {
                     console.error(e)
                     setNowPlaying(null)
